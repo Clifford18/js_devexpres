@@ -4,7 +4,7 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {TextBox} from "devextreme-react";
+import {Scheduler, TextBox} from "devextreme-react";
 
 const data = [{
 	arg: 1990,
@@ -15,6 +15,21 @@ const data = [{
 }, {
 	arg: 2010,
 	val: 6916183482
+}];
+
+const appointments = [{
+	text: 'Website Re-Design Plan',
+	startDate: new Date(2019, 4, 22, 9, 30),
+	endDate: new Date(2019, 4, 22, 11, 30)
+}, {
+	text: 'Book Flights to San Fran for Sales Trip',
+	startDate: new Date(2019, 4, 22, 12, 0),
+	endDate: new Date(2019, 4, 22, 13, 0),
+	allDay: true
+}, {
+	text: 'Install New Router in Dev Room',
+	startDate: new Date(2019, 4, 23, 10, 30),
+	endDate: new Date(2019, 4, 23, 16, 30)
 }];
 
 class App extends React.Component {
@@ -52,6 +67,15 @@ class App extends React.Component {
 					/>
 					<br />
 					<div>{this.state.text}</div>
+				</div>
+				<div>
+					<Scheduler
+						dataSource={appointments}
+						height={600}
+						editing={false}
+						defaultCurrentDate={new Date(2019, 4, 22)}
+						startDayHour={9}
+					/>
 				</div>
 			</div>
 		);
