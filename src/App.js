@@ -77,6 +77,13 @@ class App extends React.Component {
 						startDayHour={9}
 					/>
 				</div>
+				<div>
+					<Button
+						disabled={false}
+						width={100}
+						text="Click me"
+					/>
+				</div>
 			</div>
 		);
 	}
