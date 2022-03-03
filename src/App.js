@@ -4,6 +4,7 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
+import {TextBox} from "devextreme-react";
 
 const data = [{
 	arg: 1990,
@@ -17,6 +18,16 @@ const data = [{
 }];
 
 class App extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			text: 'TEXT'
+		};
+
+		this.handleValueChange = this.handleValueChange.bind(this);
+	}
+
 	render() {
 		return (
 			<div>
@@ -33,6 +44,15 @@ class App extends React.Component {
 						<Legend visible={false}/>
 					</Chart>
 				</div>
+				<div>
+					<TextBox
+						value={this.state.text}
+						onValueChange={this.handleValueChange}
+						valueChangeEvent="input"
+					/>
+					<br />
+					<div>{this.state.text}</div>
+				</div>
 			</div>
 		);
 	}
@@ -40,6 +60,12 @@ class App extends React.Component {
 
 	sayHelloWorld() {
 		alert('Hello world!');
+	}
+
+	handleValueChange(value) {
+		this.setState({
+			text: value.toUpperCase()
+		});
 	}
 }
 
