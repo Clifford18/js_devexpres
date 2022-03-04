@@ -9,16 +9,34 @@ import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
 
-//Scrollablw view
+//Markup Customization :Using a rendering function
+const renderListItem = (itemData) => {
+	return <p>{itemData.itemProperty}</p>;
+}
+const renderButton = (button) => {
+	return <div style={{ padding: 20 }}><p>{button.text}</p></div>;
+}
 class App extends React.Component {
 	render() {
 		return (
-			<ScrollView>
-				<div>Some scrollable content</div>
-			</ScrollView>
+			<React.Fragment>
+				<List itemRender={renderListItem} />
+				<Button render={renderButton} />
+			</React.Fragment>
 		);
 	}
 }
+
+// //Scrollablw view
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<ScrollView>
+// 				<div>Some scrollable content</div>
+// 			</ScrollView>
+// 		);
+// 	}
+// }
 
 // //callback functions
 // class App extends React.Component {
