@@ -4,39 +4,71 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {DataGrid, List, Scheduler, ScrollView, TextBox, Tooltip, VectorMap} from "devextreme-react";
+import {DataGrid, Form, List, Scheduler, ScrollView, Template, TextBox, Tooltip, VectorMap} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
+import service from './data.js'
 
-class ListItemTmpl extends React.PureComponent {
-	render() {
-		return (
-			<p>{this.props.data.itemProperty}</p>
-		);
-	}
-}
-
-class ButtonTmpl extends React.PureComponent {
-	render() {
-		return (
-			<div style={{ padding: 20 }}>
-				<p>{this.props.data.text}</p>
-			</div>
-		);
-	}
+//Markup Customization :Using a Template Component
+const renderSelectBoxItem = item => {
+	return <div>{item.toUpperCase()}</div>;
 }
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.employee = service.getEmployee();
+		this.positions = service.getPositions();
+		this.positionEditorOptions = {
+			items: this.positions,
+			value: '',
+			itemTemplate: 'selectBoxItem'
+		};
+	}
 	render() {
 		return (
-			<React.Fragment>
-				<List itemComponent={ListItemTmpl} />
-				<Button component={ButtonTmpl} />
-			</React.Fragment>
+			<Form formData={this.employee}>
+				<Item
+					dataField="Position"
+					editorType="dxSelectBox"
+					editorOptions={this.positionEditorOptions}
+				/>
+				<Template name="selectBoxItem" render={renderSelectBoxItem} />
+			</Form>
 		);
 	}
 }
+
+// //Markup Customization :Using a Custom Component
+// class ListItemTmpl extends React.PureComponent {
+// 	render() {
+// 		return (
+// 			<p>{this.props.data.itemProperty}</p>
+// 		);
+// 	}
+// }
+//
+// class ButtonTmpl extends React.PureComponent {
+// 	render() {
+// 		return (
+// 			<div style={{ padding: 20 }}>
+// 				<p>{this.props.data.text}</p>
+// 			</div>
+// 		);
+// 	}
+// }
+//
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<React.Fragment>
+// 				<List itemComponent={ListItemTmpl} />
+// 				<Button component={ButtonTmpl} />
+// 			</React.Fragment>
+// 		);
+// 	}
+// }
 
 // //Markup Customization :Using a rendering function
 // const renderListItem = (itemData) => {
