@@ -4,24 +4,58 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {DataGrid, Scheduler, TextBox, Tooltip} from "devextreme-react";
+import {DataGrid, List, Scheduler, TextBox, Tooltip} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
+import {Item} from "devextreme-react/box";
 
+// Item element support bawith badge
 class App extends React.Component {
-	columnEditorOptions = {width: 100};
-
 	render() {
 		return (
-			<DataGrid>
-				<Column
-					editorOptions={this.columnEditorOptions}
-				/>
-			</DataGrid>
+			<List>
+				<Item>Orange</Item>
+				<Item badge="New">White</Item>
+				<Item>Black</Item>
+			</List>
 		);
 	}
 }
 
-	export default App;
+// //collections configure Datagrid columns
+//
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<DataGrid>
+// 				<Column
+// 					dataField="firstName"
+// 					caption="First Name"
+// 				/>
+// 				<Column
+// 					dataField="lastName"
+// 					caption="Last Name"
+// 					defaultVisible={true}
+// 				/>
+// 			</DataGrid>
+// 		);
+// 	}
+// }
+
+// class App extends React.Component {
+// 	columnEditorOptions = {width: 100};
+//
+// 	render() {
+// 		return (
+// 			<DataGrid>
+// 				<Column
+// 					editorOptions={this.columnEditorOptions}
+// 				/>
+// 			</DataGrid>
+// 		);
+// 	}
+// }
+
+
 
 //statis componenets
 
@@ -135,3 +169,6 @@ class App extends React.Component {
 // 		});
 // 	}
 // }
+
+
+export default App;
