@@ -4,49 +4,113 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {DataGrid, Form, List, Scheduler, ScrollView, Template, TextBox, Tooltip, VectorMap} from "devextreme-react";
+import {
+	DataGrid,
+	Form,
+	List,
+	Scheduler,
+	ScrollView,
+	Template,
+	TextBox,
+	Tooltip,
+	ValidationGroup, Validator,
+	VectorMap
+} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
-import service from './data.js'
+import service from './data.js';
 import DataSource from "devextreme/data/data_source";
-
-//get ui component instances
-//data layer
+import {EmailRule, RequiredRule} from "devextreme-react/form";
 
 
-const items = [
-	{ text: '123' },
-	{ text: '234' },
-	{ text: '567' }
-];
+//DevExtreme Validation Features
+
 
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.dataSource = new DataSource({
-			store: {
-				type: 'array',
-				data: items
-			},
-			sort: { getter: 'text', desc: true }
-		});
+		this.state = {
+			email: null,
+			password: null
+		};
+		this.handleEmailChange = (e) => {
+			this.setState({
+				email: e.value
+			});
+		};
+		this.handlePasswordChange = (e) => {
+			this.setState({
+				password: e.value
+			});
+		};
+		this.validate = this.validate.bind(this);
 	}
 
 	render() {
 		return (
-			<List dataSource={this.dataSource} />
+			<ValidationGroup>
+				<TextBox value={this.state.email} onValueChanged={this.handleEmailChange}>
+					<Validator>
+						<RequiredRule message="Email is required"/>
+						<EmailRule message="Email is invalid"/>
+					</Validator>
+				</TextBox>
+
+				<TextBox value={this.state.password} mode="password" onValueChanged={this.handlePasswordChange}>
+					<Validator>
+						<RequiredRule message="Password is required"/>
+					</Validator>
+				</TextBox>
+				<Button onClick={this.validate} text="Submit"/>
+			</ValidationGroup>
 		);
 	}
 
-	componentWillUnmount() {
-		// A DataSource instance created outside a UI component should be disposed of manually.
-		this.dataSource.dispose();
+	validate(params) {
+		const result = params.validationGroup.validate();
+		if (result.isValid) {
+			// The values are valid
+			// Submit them...
+			// ...
+			// ... and then reset
+			// params.validationGroup.reset();
+		}
 	}
 }
 
-
+// //get ui component instances
+// //data layer
+// const items = [
+// 	{ text: '123' },
+// 	{ text: '234' },
+// 	{ text: '567' }
+// ];
+//
+// class App extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+//
+// 		this.dataSource = new DataSource({
+// 			store: {
+// 				type: 'array',
+// 				data: items
+// 			},
+// 			sort: { getter: 'text', desc: true }
+// 		});
+// 	}
+//
+// 	render() {
+// 		return (
+// 			<List dataSource={this.dataSource} />
+// 		);
+// 	}
+//
+// 	componentWillUnmount() {
+// 		// A DataSource instance created outside a UI component should be disposed of manually.
+// 		this.dataSource.dispose();
+// 	}
+// }
 
 // //Call Methods
 // class App extends React.Component {
@@ -251,7 +315,6 @@ class App extends React.Component {
 // 		);
 // 	}
 // }
-
 
 
 //statis componenets
