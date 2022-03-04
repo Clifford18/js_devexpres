@@ -9,23 +9,52 @@ import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
 
-//Markup Customization :Using a rendering function
-const renderListItem = (itemData) => {
-	return <p>{itemData.itemProperty}</p>;
+class ListItemTmpl extends React.PureComponent {
+	render() {
+		return (
+			<p>{this.props.data.itemProperty}</p>
+		);
+	}
 }
-const renderButton = (button) => {
-	return <div style={{ padding: 20 }}><p>{button.text}</p></div>;
+
+class ButtonTmpl extends React.PureComponent {
+	render() {
+		return (
+			<div style={{ padding: 20 }}>
+				<p>{this.props.data.text}</p>
+			</div>
+		);
+	}
 }
+
 class App extends React.Component {
 	render() {
 		return (
 			<React.Fragment>
-				<List itemRender={renderListItem} />
-				<Button render={renderButton} />
+				<List itemComponent={ListItemTmpl} />
+				<Button component={ButtonTmpl} />
 			</React.Fragment>
 		);
 	}
 }
+
+// //Markup Customization :Using a rendering function
+// const renderListItem = (itemData) => {
+// 	return <p>{itemData.itemProperty}</p>;
+// }
+// const renderButton = (button) => {
+// 	return <div style={{ padding: 20 }}><p>{button.text}</p></div>;
+// }
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<React.Fragment>
+// 				<List itemRender={renderListItem} />
+// 				<Button render={renderButton} />
+// 			</React.Fragment>
+// 		);
+// 	}
+// }
 
 // //Scrollablw view
 // class App extends React.Component {
