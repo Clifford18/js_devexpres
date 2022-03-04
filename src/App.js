@@ -13,6 +13,8 @@ import DataSource from "devextreme/data/data_source";
 
 //get ui component instances
 //data layer
+
+
 const items = [
 	{ text: '123' },
 	{ text: '234' },
