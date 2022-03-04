@@ -4,18 +4,7 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {
-	DataGrid,
-	Form,
-	List,
-	Scheduler,
-	ScrollView,
-	Template,
-	TextBox,
-	Tooltip,
-	ValidationGroup, Validator,
-	VectorMap
-} from "devextreme-react";
+import {DataGrid, Form, List, Scheduler, ScrollView, Template, TextBox, Tooltip, ValidationGroup, Validator, VectorMap} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
