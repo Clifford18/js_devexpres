@@ -10,35 +10,62 @@ import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
 import service from './data.js'
 
-//Markup Customization :Using a Template Component
-const renderSelectBoxItem = item => {
-	return <div>{item.toUpperCase()}</div>;
-}
-
+//Call Methods
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.employee = service.getEmployee();
-		this.positions = service.getPositions();
-		this.positionEditorOptions = {
-			items: this.positions,
-			value: '',
-			itemTemplate: 'selectBoxItem'
+
+		this.textBoxRef = React.createRef();
+
+		this.focusTextBox = () => {
+			this.textBox.focus()
 		};
 	}
+
+	get textBox() {
+		// `current.instance` points to the UI component instance
+		return this.textBoxRef.current.instance;
+	}
+
 	render() {
 		return (
-			<Form formData={this.employee}>
-				<Item
-					dataField="Position"
-					editorType="dxSelectBox"
-					editorOptions={this.positionEditorOptions}
-				/>
-				<Template name="selectBoxItem" render={renderSelectBoxItem} />
-			</Form>
+			<div>
+				<TextBox ref={this.textBoxRef} />
+				<Button text="Focus TextBox" onClick={this.focusTextBox} />
+			</div>
 		);
 	}
 }
+
+// //Markup Customization :Using a Template Component
+// const renderSelectBoxItem = item => {
+// 	return <div>{item.toUpperCase()}</div>;
+// }
+//
+// class App extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		this.employee = service.getEmployee();
+// 		this.positions = service.getPositions();
+// 		this.positionEditorOptions = {
+// 			items: this.positions,
+// 			value: '',
+// 			itemTemplate: 'selectBoxItem'
+// 		};
+// 	}
+// 	render() {
+// 		return (
+// 			<Form formData={this.employee}>
+// 				<Item
+// 					dataField="Position"
+// 					editorType="dxSelectBox"
+// 					editorOptions={this.positionEditorOptions}
+// 				/>
+// 				<Template name="selectBoxItem" render={renderSelectBoxItem} />
+// 			</Form>
+// 		);
+// 	}
+// }
 
 // //Markup Customization :Using a Custom Component
 // class ListItemTmpl extends React.PureComponent {
