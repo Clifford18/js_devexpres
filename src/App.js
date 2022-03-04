@@ -9,33 +9,69 @@ import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
 import service from './data.js'
+import DataSource from "devextreme/data/data_source";
 
-//Call Methods
+//get ui component instances
+//data layer
+const items = [
+	{ text: '123' },
+	{ text: '234' },
+	{ text: '567' }
+];
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.textBoxRef = React.createRef();
-
-		this.focusTextBox = () => {
-			this.textBox.focus()
-		};
-	}
-
-	get textBox() {
-		// `current.instance` points to the UI component instance
-		return this.textBoxRef.current.instance;
+		this.dataSource = new DataSource({
+			store: {
+				type: 'array',
+				data: items
+			},
+			sort: { getter: 'text', desc: true }
+		});
 	}
 
 	render() {
 		return (
-			<div>
-				<TextBox ref={this.textBoxRef} />
-				<Button text="Focus TextBox" onClick={this.focusTextBox} />
-			</div>
+			<List dataSource={this.dataSource} />
 		);
 	}
+
+	componentWillUnmount() {
+		// A DataSource instance created outside a UI component should be disposed of manually.
+		this.dataSource.dispose();
+	}
 }
+
+
+
+// //Call Methods
+// class App extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+//
+// 		this.textBoxRef = React.createRef();
+//
+// 		this.focusTextBox = () => {
+// 			this.textBox.focus()
+// 		};
+// 	}
+//
+// 	get textBox() {
+// 		// `current.instance` points to the UI component instance
+// 		return this.textBoxRef.current.instance;
+// 	}
+//
+// 	render() {
+// 		return (
+// 			<div>
+// 				<TextBox ref={this.textBoxRef} />
+// 				<Button text="Focus TextBox" onClick={this.focusTextBox} />
+// 			</div>
+// 		);
+// 	}
+// }
 
 // //Markup Customization :Using a Template Component
 // const renderSelectBoxItem = item => {
