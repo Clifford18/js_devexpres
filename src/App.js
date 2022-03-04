@@ -8,18 +8,42 @@ import {DataGrid, List, Scheduler, TextBox, Tooltip} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 
-// Item element support bawith badge
+
+//event handling
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		// Uncomment the line below to bind the handler to the React component's context, for example, to call this.setState()
+		this.handleButtonClick = this.handleButtonClick.bind(this);
+	}
+
 	render() {
 		return (
-			<List>
-				<Item>Orange</Item>
-				<Item badge="New">White</Item>
-				<Item>Black</Item>
-			</List>
+			<Button
+				text="Event Handling"
+				width={200}
+				onClick={this.handleButtonClick}
+			/>
 		);
 	}
+
+	handleButtonClick(e) {
+		alert("The button was clicked")
+	}
 }
+
+// // Item element support bawith badge
+// class App extends React.Component {
+// 	render() {
+// 		return (
+// 			<List>
+// 				<Item>Orange</Item>
+// 				<Item badge="New">White</Item>
+// 				<Item>Black</Item>
+// 			</List>
+// 		);
+// 	}
+// }
 
 // //collections configure Datagrid columns
 //
