@@ -4,27 +4,39 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {DataGrid, List, Scheduler, TextBox, Tooltip, VectorMap} from "devextreme-react";
+import {DataGrid, List, Scheduler, ScrollView, TextBox, Tooltip, VectorMap} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
 import {Layer} from "devextreme-react/vector-map";
 
-//callback functions
+//Scrollablw view
 class App extends React.Component {
 	render() {
 		return (
-			<VectorMap>
-				<Layer
-					customize={this.customizeLayers}
-				/>
-			</VectorMap>
+			<ScrollView>
+				<div>Some scrollable content</div>
+			</ScrollView>
 		);
 	}
-
-	customizeLayers(elements) {
-		// ...
-	}
 }
+
+// //callback functions
+// class App extends React.Component {
+//
+// 	render() {
+// 		return (
+// 			<VectorMap>
+// 				<Layer
+// 					customize={this.customizeLayers}
+// 				/>
+// 			</VectorMap>
+// 		);
+// 	}
+//
+// 	customizeLayers(elements) {
+// 		// ...
+// 	}
+// }
 
 // //event handling
 // class App extends React.Component {
