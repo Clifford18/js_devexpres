@@ -4,33 +4,50 @@ import 'devextreme/dist/css/dx.light.css';
 
 import Button from 'devextreme-react/button';
 import Chart, {ArgumentAxis, Series, Legend} from 'devextreme-react/chart';
-import {DataGrid, List, Scheduler, TextBox, Tooltip} from "devextreme-react";
+import {DataGrid, List, Scheduler, TextBox, Tooltip, VectorMap} from "devextreme-react";
 import {Column} from "devextreme-react/gantt";
 import {Item} from "devextreme-react/box";
+import {Layer} from "devextreme-react/vector-map";
 
-
-//event handling
+//callback functions
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-		// Uncomment the line below to bind the handler to the React component's context, for example, to call this.setState()
-		this.handleButtonClick = this.handleButtonClick.bind(this);
-	}
-
 	render() {
 		return (
-			<Button
-				text="Event Handling"
-				width={200}
-				onClick={this.handleButtonClick}
-			/>
+			<VectorMap>
+				<Layer
+					customize={this.customizeLayers}
+				/>
+			</VectorMap>
 		);
 	}
 
-	handleButtonClick(e) {
-		alert("The button was clicked")
+	customizeLayers(elements) {
+		// ...
 	}
 }
+
+// //event handling
+// class App extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+// 		// Uncomment the line below to bind the handler to the React component's context, for example, to call this.setState()
+// 		this.handleButtonClick = this.handleButtonClick.bind(this);
+// 	}
+//
+// 	render() {
+// 		return (
+// 			<Button
+// 				text="Event Handling"
+// 				width={200}
+// 				onClick={this.handleButtonClick}
+// 			/>
+// 		);
+// 	}
+//
+// 	handleButtonClick(e) {
+// 		alert("The button was clicked")
+// 	}
+// }
 
 // // Item element support bawith badge
 // class App extends React.Component {
